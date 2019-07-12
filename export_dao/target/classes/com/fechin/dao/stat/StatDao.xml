@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fechin.dao.stat.StatDao">
+
+    <select id="findFactoryWithSumCnumber" resultType="java.util.Map">
+        SELECT SUM(ccp.cnumber) value,cf.factory_name name FROM co_contract_product ccp
+        LEFT JOIN co_factory cf ON ccp.factory_id = cf.id WHERE company_id = #{companyId} AND cf.factory_name!='null' GROUP BY cf.id ;
+    </select>
+    <select id="findSell" resultType="java.util.Map">
+        SELECT SUM(cnumber) value,product_no name FROM co_contract_product WHERE company_id = #{companyId} GROUP BY product_no ORDER BY value DESC LIMIT 0,15;
+    </select>
+    <select id="findOnline" resultType="java.util.Map">
+        SELECT oi.A1 name, IFNULL(COUNT(s.time),0) value FROM st_online_info oi LEFT JOIN (SELECT * FROM st_sys_log sl WHERE sl.company_id=#{companyId}) s ON DATE_FORMAT(s.time,"%H") = oi.A1 GROUP BY oi.A1
+    </select>
+</mapper>

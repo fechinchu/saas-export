@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fechin.dao.module.ModuleDao">
+    <insert id="add">
+      INSERT INTO ss_module VALUES(
+        #{id},
+        #{parentId},
+        #{parentName},
+        #{name},
+        #{layerNum},
+        #{isLeaf},
+        #{ico},
+        #{cpermission},
+        #{curl},
+        #{ctype},
+        #{state},
+        #{belong},
+        #{cwhich},
+        #{quoteNum},
+        #{remark},
+        #{orderNo}
+      )
+    </insert>
+
+    <update id="update">
+      UPDATE ss_module SET
+      parent_id =#{parentId},
+      parent_name =#{parentName},
+      name =#{name},
+      layer_num =#{layerNum},
+      is_leaf =#{isLeaf},
+      ico =#{ico},
+      cpermission =#{cpermission},
+      curl =#{curl},
+      ctype =#{ctype},
+      state =#{state},
+      belong =#{belong},
+      cwhich =#{cwhich},
+      quote_num =#{quoteNum},
+      remark =#{remark},
+      order_no =#{orderNo}
+      WHERE module_id =#{id}
+    </update>
+
+    <delete id="delete">
+      DELETE FROM ss_module WHERE module_id=#{id}
+    </delete>
+
+    <select id="findAll" resultMap="baseResultMap">
+      SELECT * FROM ss_module
+    </select>
+
+    <select id="findByOne" resultMap="baseResultMap">
+      SELECT * FROM ss_module WHERE module_id = #{id}
+    </select>
+    <select id="findByBelong" resultMap="baseResultMap">
+        SELECT * FROM ss_module WHERE belong = #{belong}
+    </select>
+    <select id="findModuleByUid" resultMap="baseResultMap">
+      SELECT DISTINCT sm.* FROM pe_role_user pru LEFT JOIN pe_role pe ON pru.role_id= pe.role_id
+      LEFT JOIN pe_role_module prm ON pe.role_id = prm.role_id LEFT JOIN ss_module sm
+      ON prm.module_id = sm.module_id WHERE user_id = #{userId};
+    </select>
+
+    <resultMap id="baseResultMap" type="com.fechin.domain.module.Module">
+        <id property="id" column="module_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="parentName" column="parent_name"/>
+        <result property="name" column="name"/>
+        <result property="layerNum" column="layer_num"/>
+        <result property="isLeaf" column="is_leaf"/>
+        <result property="ico" column="ico"/>
+        <result property="cpermission" column="cpermission"/>
+        <result property="curl" column="curl"/>
+        <result property="ctype" column="ctype"/>
+        <result property="state" column="state"/>
+        <result property="belong" column="belong"/>
+        <result property="cwhich" column="cwhich"/>
+        <result property="quoteNum" column="quote_num"/>
+        <result property="remark" column="remark"/>
+        <result property="orderNo" column="order_no"/>
+    </resultMap>
+</mapper>

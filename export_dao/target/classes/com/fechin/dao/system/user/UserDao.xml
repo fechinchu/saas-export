@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fechin.dao.system.user.UserDao">
+
+    <resultMap id="baseResultMap" type="com.fechin.domain.system.user.User">
+        <id property="userId" column="user_id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="email" column="email"/>
+        <result property="userName" column="user_name"/>
+        <result property="station" column="station"/>
+        <result property="password" column="password"/>
+        <result property="state" column="state"/>
+        <result property="companyId" column="company_id"/>
+        <result property="companyName" column="company_name"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="managerId" column="manager_id"/>
+        <result property="gender" column="gender"/>
+        <result property="telephone" column="telephone"/>
+        <result property="birthday" column="birthday"/>
+        <result property="degree" column="degree"/>
+        <result property="salary" column="salary"/>
+        <result property="joinDate" column="join_date"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createDempt" column="create_dempt"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+    <insert id="add">
+        INSERT INTO pe_user VALUES
+        (
+           #{userId},
+           #{deptId},
+           #{email},
+           #{userName},
+           #{station},
+           #{password},
+           #{state},
+           #{companyId},
+           #{companyName},
+           #{deptName},
+           #{managerId},
+           #{gender},
+           #{telephone},
+           #{birthday},
+           #{degree},
+           #{salary},
+           #{joinDate},
+           #{orderNo},
+           #{createBy},
+           #{createDempt},
+           #{createTime},
+           #{updateBy},
+           #{updateTime},
+           #{remark}
+        )
+    </insert>
+    <insert id="addUserRole">
+        INSERT INTO pe_role_user VALUES(#{userId},#{roleId});
+    </insert>
+    <update id="update">
+        UPDATE pe_user SET
+        dept_id = #{deptId},
+        email = #{email},
+        user_name = #{userName},
+        station = #{station},
+        password = #{password},
+        state = #{state},
+        dept_name = #{deptName},
+        manager_id = #{managerId},
+        gender = #{gender},
+        telephone = #{telephone},
+        birthday = #{birthday},
+        degree = #{degree},
+        salary = #{salary},
+        join_date = #{joinDate},
+        order_no = #{orderNo},
+        create_by = #{createBy},
+        create_dempt = #{createDempt},
+        update_by = #{updateBy},
+        update_time = #{updateTime},
+        remark = #{remark}
+        WHERE user_id = #{userId}
+    </update>
+    <delete id="delete">
+        DELETE FROM pe_user WHERE company_id = #{companyId} and  user_id = #{userId}
+    </delete>
+
+    <delete id="deleteUserRole">
+        DELETE FROM pe_role_user WHERE user_id = #{userId}
+    </delete>
+
+    <select id="findAll" resultMap="baseResultMap">
+        SELECT * FROM pe_user WHERE company_id = #{companyId}
+    </select>
+    <select id="findById" resultMap="baseResultMap">
+        SELECT * FROM pe_user WHERE company_id = #{companyId} and  user_id = #{userId}
+    </select>
+    <select id="findWithRole" resultMap="com.fechin.dao.system.role.RoleDao.baseResultMap">
+        SELECT * FROM pe_role_user p  LEFT JOIN pe_role r ON p.role_id = r.role_id WHERE p.user_id = #{userId}
+    </select>
+    <select id="findUserByEmail" resultMap="baseResultMap">
+        SELECT * FROM pe_user WHERE email = #{email};
+    </select>
+</mapper>

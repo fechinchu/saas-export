@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fechin.dao.system.role.RoleDao">
+
+    <resultMap id="baseResultMap" type="com.fechin.domain.system.role.Role">
+        <id property="id" column="role_id"/>
+        <result property="name" column="name"/>
+        <result property="remark" column="remark"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createDept" column="create_dept"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="companyId" column="company_id"/>
+        <result property="companyName" column="company_name"/>
+    </resultMap>
+    <insert id="add">
+        INSERT INTO pe_role VALUES(
+            #{id},
+            #{name},
+            #{remark},
+            #{orderNo},
+            #{createBy},
+            #{createDept},
+            #{createTime},
+            #{updateBy},
+            #{updateTime},
+            #{companyId},
+            #{companyName}
+        )
+    </insert>
+    <insert id="addOnRoleModule">
+        INSERT INTO pe_role_module VALUES(
+        #{roleId},#{moduleId}
+        );
+    </insert>
+
+    <update id="update">
+        UPDATE pe_role SET
+        name=#{name},
+        remark=#{remark},
+        order_no=#{orderNo},
+        create_by=#{createBy},
+        create_dept=#{createDept},
+        create_time=#{createTime},
+        update_by=#{updateBy},
+        update_time=#{updateTime},
+        company_id=#{companyId},
+        company_name=#{companyName}
+        WHERE role_id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM pe_role WHERE role_id = #{id}
+    </delete>
+    <delete id="deleteOnRoleModule">
+        DELETE FROM pe_role_module WHERE role_id =#{roleid}
+    </delete>
+
+    <select id="findAll" resultMap="baseResultMap">
+        SELECT * FROM pe_role WHERE company_id = #{companyId}
+    </select>
+
+    <select id="findByOne" resultMap="baseResultMap">
+        SELECT * FROM pe_role WHERE company_id = #{companyId} AND role_id = #{id}
+    </select>
+    <select id="findAllOrderNo" resultType="java.math.BigDecimal">
+        SELECT order_no FROM pe_role where company_id = #{companyId}
+    </select>
+    <select id="findRoleWithUser" resultMap="baseResultMap">
+        SELECT pr.* FROM pe_role_user pru LEFT JOIN pe_role pr ON pru.role_id = pr.role_id WHERE user_id = #{userId} AND company_Id = #{companyId}
+    </select>
+    <select id="findModluesByRole" resultMap="com.fechin.dao.module.ModuleDao.baseResultMap">
+        SELECT * FROM `pe_role_module` prm LEFT JOIN `ss_module` sm ON prm.module_id = sm.module_id WHERE prm.role_id = #{roleId}
+    </select>
+
+</mapper>

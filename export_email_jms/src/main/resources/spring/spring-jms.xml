@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/jms
+http://www.springframework.org/schema/jms/spring-jms.xsd
+http://activemq.apache.org/schema/core
+http://activemq.apache.org/schema/core/activemq-core.xsd">
+    <context:component-scan base-package="com.fechin" />
+    <!--spring和activeMq整合,通过整合JmsTemplate对象进行消息发送-->
+    <!--1.连接工厂-->
+    <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory" >
+        <property name="brokerURL" value="tcp://127.0.0.1:61616"/>
+    </bean>
+    <!--2.Spring管理连接工厂-->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="activeMQConnectionFactory"/>
+    </bean>
+    <!--配置监听器管理器,配置的都是基于queue类型的消息监听-->
+    <jms:listener-container destination-type="queue" connection-factory="connectionFactory">
+        <!--告知消费者业务类,去哪个队列中获取消息-->
+        <!--ref的jmsConsumer是我们自己写的消费者类,已经放到Spring的容器中-->
+        <jms:listener destination="fechin-spring-queue" ref="emailJmsService"/>
+    </jms:listener-container>
+</beans>

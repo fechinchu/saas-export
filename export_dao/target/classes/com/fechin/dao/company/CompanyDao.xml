@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fechin.dao.company.CompanyDao">
+
+    <resultMap id="baseResultMap" type="com.fechin.domain.company.Company">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="expiration_date" property="expirationDate"/>
+        <result column="address" property="address"/>
+        <result column="license_id" property="licenseId"/>
+        <result column="representative" property="representative"/>
+        <result column="phone" property="phone"/>
+        <result column="company_size" property="companySize"/>
+        <result column="industry" property="industry"/>
+        <result column="remarks" property="remarks"/>
+        <result column="state" property="state"/>
+        <result column="balance" property="balance"/>
+        <result column="city" property="city"/>
+    </resultMap>
+
+    <insert id="edit">
+        INSERT INTO ss_company VALUES (
+        #{id},
+        #{name},
+        #{expirationDate},
+        #{address},
+        #{licenseId},
+        #{representative},
+        #{phone},
+        #{companySize},
+        #{industry},
+        #{remarks},
+        #{state},
+        #{balance},
+        #{city}
+        )
+    </insert>
+    <update id="update">
+        UPDATE ss_company SET
+        name=#{name},
+        expiration_date=#{expirationDate},
+        address=#{address},
+        license_id=#{licenseId},
+        representative=#{representative},
+        phone=#{phone},
+        company_size=#{companySize},
+        industry=#{industry},
+        remarks=#{remarks},
+        state=#{state},
+        balance=#{balance},
+        city=#{city}
+        WHERE id=#{id}
+    </update>
+    <delete id="delete">
+        DELETE FROM ss_company WHERE id = #{id}
+    </delete>
+
+    <select id="findAll" resultMap="baseResultMap">
+        SELECT * FROM ss_company
+    </select>
+    <select id="findByOne" resultMap="baseResultMap">
+        SELECT * FROM ss_company WHERE id = #{id}
+    </select>
+    <select id="findAllListNumbers" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM ss_company;
+    </select>
+    <select id="findByPage" resultMap="baseResultMap">
+        SELECT * FROM ss_company limit #{firstNumberOnPage} ,#{showEveryPageNumber};
+    </select>
+</mapper>

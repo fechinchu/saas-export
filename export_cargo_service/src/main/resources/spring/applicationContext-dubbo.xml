@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--当前应用的名称,名称不能和其它服务名称相同-->
+    <dubbo:application name="export_cargo_service"/>
+
+    <!--给当前服务提供可访问的注册中心地址-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+
+    <!--服务提供者,提供该服务的端口号,该端口号给dubbo进行查找-->
+    <!--给消费提供可访问的地址:默认是20880-->
+    <dubbo:protocol name="dubbo" port="20886"/>
+
+    <!--开启dubbo的注解扫描-->
+    <dubbo:annotation package="com.fechin.service"/>
+
+</beans>

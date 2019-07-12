@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>saas_export02</artifactId>
+        <groupId>com.fechin</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fechin</groupId>
+    <artifactId>export_protal_web</artifactId>
+
+    <packaging>war</packaging>
+
+    <name>export_protal_web Maven Webapp</name>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.fechin</groupId>
+            <artifactId>export_company_interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--在这里,因为要做分布式项目,web层不依赖service层,而是依赖service层的接口
+        service层依赖于service接口层,service接口层依赖于domain层-->
+
+    </dependencies>
+</project>

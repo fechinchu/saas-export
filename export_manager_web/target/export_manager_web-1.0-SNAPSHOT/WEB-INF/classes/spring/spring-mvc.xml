@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/aop
+  http://www.springframework.org/schema/aop/spring-aop.xsd
+  http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx.xsd
+  http://code.alibabatech.com/schema/dubbo
+  http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+  http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <context:component-scan base-package="com.fechin.web"/>
+    <mvc:annotation-driven/>
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <aop:aspectj-autoproxy/>
+    <!--开启AOP对注解的支持-->
+
+    <!--<mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login.do"/>
+            <mvc:exclude-mapping path="/index.do"/>
+            <bean id="isLoginInterceptor" class="com.fechin.web.interceptors.IsLoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+
+    <bean id="customExceptionResolver" class="com.fechin.web.exceptions.CustomExceptionResolver"/>
+
+
+    <!--当前应用的名称,名称不能和其它服务名称相同-->
+    <dubbo:application name="export_manager_web"/>
+
+    <!--给当前服务提供可访问的注册中心地址-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+
+    <!--开启dubbo的注解扫描-->
+    <dubbo:annotation package="com.fechin.web.controller"/>
+
+    <!--在配置文件中加载qiniu.properties文件-->
+    <context:property-placeholder location="classpath:properties/qiniu.properties"/>
+
+    <!--id是确定-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <value>5242880</value>
+        </property>
+    </bean>
+
+
+
+</beans>
