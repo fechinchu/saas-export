@@ -6,7 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="800c5c17-3d68-42b4-a0ea-7e46da11b55e" name="Default Changelist" comment="" />
+    <list default="true" id="800c5c17-3d68-42b4-a0ea-7e46da11b55e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/export_common/target/" />
@@ -73,8 +76,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="245" column="56" selection-start-line="245" selection-start-column="56" selection-end-line="245" selection-end-column="56" />
+            <state relative-caret-position="509">
+              <caret line="355" column="50" lean-forward="true" selection-start-line="355" selection-start-column="50" selection-end-line="355" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -289,7 +292,7 @@
     <option name="jreName" value="1.8" />
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="94" />
     <option name="y" value="9" />
     <option name="width" value="1683" />
@@ -323,7 +326,7 @@
     <property name="ChangesTree.GroupingKeys" value="module&#10;directory" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562952773207" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562953395633" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -331,7 +334,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15429688" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -861,7 +864,7 @@
       <workItem from="1562922035983" duration="713000" />
       <workItem from="1562929487191" duration="2524000" />
       <workItem from="1562940194869" duration="639000" />
-      <workItem from="1562952308560" duration="455000" />
+      <workItem from="1562952308560" duration="1129000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0">
       <created>1562952456639</created>
@@ -885,7 +888,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="526718000" />
+    <option name="totallyTimeSpent" value="527392000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -897,9 +900,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="94" y="9" width="1683" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.42119566" visible="true" weight="0.2310536" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.42119566" visible="true" weight="0.19989339" />
       <window_info id="Structure" order="1" sideWeight="0.5788044" side_tool="true" weight="0.22176023" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -942,9 +945,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
     <MESSAGE value="hehe" />
     <MESSAGE value="v1.0" />
     <option name="LAST_COMMIT_MESSAGE" value="v1.0" />
@@ -1277,8 +1277,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="245" column="56" selection-start-line="245" selection-start-column="56" selection-end-line="245" selection-end-column="56" />
+        <state relative-caret-position="509">
+          <caret line="355" column="50" lean-forward="true" selection-start-line="355" selection-start-column="50" selection-end-line="355" selection-end-column="50" />
         </state>
       </provider>
     </entry>
