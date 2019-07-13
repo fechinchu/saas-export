@@ -1,3 +1,5 @@
+**所用技术点:**
+**后端:Spring,SpringMVC,MyBtais,Dubbo,Shiro,ActiveMQ,webservice,JasperReport.前端:Ztree,Echarts,AdminLTE**
 # 1.前期设计
 
 ## 1.1.云服务
